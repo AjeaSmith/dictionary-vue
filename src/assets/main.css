@@ -1,1 +1,14 @@
 @import "./base.css";
+
+main {
+  padding-inline: 1.5rem;
+  max-width: 737px;
+  margin-inline: auto;
+  margin-block: 1.5rem;
+}
+
+@media (min-width: 1440px) {
+  main {
+    padding-inline: 0;
+  }
+}
