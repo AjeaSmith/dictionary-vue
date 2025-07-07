@@ -29,10 +29,8 @@
   --separator: var(--color-gray-300);
   --link: var(--color-gray-400);
   --error: var(--color-red);
-}
 
-/* set theming color variables for this project */
-:root {
+  /* light theme */
   --background: var(--color-gray-100);
   --text-primary: var(--color-black-700);
   --search: #cdcdcd;
@@ -40,21 +38,10 @@
 }
 
 [data-theme="dark"] {
-  :root {
-    --background: var(--color-black-900);
-    --text-primary: var(--color-gray-100);
-    --search: var(--color-black-800);
-    --icon: var(--color-purple);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: var(--color-black-900);
-    --text-primary: var(--color-gray-100);
-    --search: var(--color-black-800);
-    --icon: var(--color-purple);
-  }
+  --background: var(--color-black-900);
+  --text-primary: var(--color-gray-100);
+  --search: var(--color-black-800);
+  --icon: var(--color-purple);
 }
 
 *,
