@@ -1,5 +1,7 @@
 <script setup></script>
 
-<template>Hello world</template>
+<template>
+  <h1>Hello world</h1>
+</template>
 
-<style scoped></style>
+<style></style>
