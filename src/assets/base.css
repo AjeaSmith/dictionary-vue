@@ -1,10 +1,5 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
-  /* --- FONT FAMILY --- */
-  --ff-inter: "Inter", sans-serif;
-  --ff-lora: "Lora", serif;
-  --ff-mono: "Inconsolata", monospace;
-
   /* --- SIZES --- */
   --fs-lg: clamp(2rem, 1.2958rem + 3.0047vw, 4rem);
   --fs-md: clamp(1.125rem, 0.993rem + 0.5634vw, 1.5rem);
@@ -36,6 +31,16 @@
   --search: #cdcdcd;
   --icon: var(--color-gray-400);
 }
+/* determines which font to use based on selection */
+:root[data-font="sans"] {
+  --app-font: "Inter", sans-serif;
+}
+:root[data-font="serif"] {
+  --app-font: "Lora", serif;
+}
+:root[data-font="mono"] {
+  --app-font: "Inconsolata", monospace;
+}
 
 [data-theme="dark"] {
   --background: var(--color-black-900);
@@ -57,7 +62,7 @@ body {
   background: var(--background);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
-  font-family: var(--ff-inter);
+  font-family: var(--app-font);
   font-size: var(--ff-body);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
