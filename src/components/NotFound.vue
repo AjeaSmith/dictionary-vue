@@ -11,7 +11,7 @@
 </template>
 <style scoped>
 .not-found {
-  font-size: var(--app-font);
+  font-family: var(--app-font);
   display: flex;
   justify-items: center;
   text-align: center;
