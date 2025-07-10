@@ -36,7 +36,6 @@ async function handleFormSubmit() {
     error.value = true;
     return;
   }
-  // TODO: submit to API
   await getSearchedWord(searchTerm.value);
 }
 watch(searchTerm, async (newValue) => {
@@ -48,7 +47,7 @@ watch(searchTerm, async (newValue) => {
 
 <style scoped>
 form {
-  margin-top: 1.5rem;
+  margin-top: 50px;
   margin-bottom: 1.8rem;
 }
 .search-wrap {
