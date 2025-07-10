@@ -1,5 +1,5 @@
 <template>
-  <section class="not-found">
+  <section class="not-found" role="alert" aria-live="polite">
     <div>
       <h1>No Definitions Found</h1>
       <p>
