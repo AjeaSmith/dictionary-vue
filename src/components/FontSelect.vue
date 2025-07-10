@@ -1,7 +1,7 @@
 <template>
   <label for="font" class="sr-only">Select a font:</label>
   <select name="font" id="font" v-model="selectedFont">
-    <option value="sans" style="color: red">Sans Serif</option>
+    <option value="sans">Sans Serif</option>
     <option value="serif">Serif</option>
     <option value="mono">Mono</option>
   </select>

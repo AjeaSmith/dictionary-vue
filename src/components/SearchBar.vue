@@ -38,7 +38,6 @@ async function handleFormSubmit() {
   }
   // TODO: submit to API
   await getSearchedWord(searchTerm.value);
-  console.log(searchTerm.value);
 }
 watch(searchTerm, async (newValue) => {
   if (newValue) {

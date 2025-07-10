@@ -11,7 +11,6 @@ const { notFound, isLoading } = useSearch();
 <template>
   <Header />
   <SearchBar />
-
   <NotFound v-if="notFound" />
   <div v-else-if="isLoading" style="text-align: center; margin-top: 2rem">Loading...</div>
   <SearchResults v-else />

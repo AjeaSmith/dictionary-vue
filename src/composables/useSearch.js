@@ -23,7 +23,6 @@ async function getSearchedWord(word) {
   } catch (error) {
     notFound.value = true;
     isLoading.value = false;
-    console.log("the error", error.message);
   }
 }
 
