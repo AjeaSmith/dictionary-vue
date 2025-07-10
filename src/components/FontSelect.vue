@@ -1,5 +1,5 @@
 <template>
-  <label for="font">Select a font:</label>
+  <label for="font" class="sr-only">Select a font:</label>
   <select name="font" id="font" v-model="selectedFont">
     <option value="sans" style="color: red">Sans Serif</option>
     <option value="serif">Serif</option>
@@ -18,16 +18,6 @@ watch(selectedFont, (newFont) => {
 </script>
 
 <style scoped>
-label {
-  position: absolute;
-  clip: rect(1px, 1px, 1px, 1px);
-  height: 1px;
-  width: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  white-space: nowrap;
-}
 select {
   font-family: var(--app-font);
   font-weight: bold;
