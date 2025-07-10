@@ -11,7 +11,7 @@
   </svg>
 </template>
 
-<style>
+<style scoped>
 svg path {
   stroke: var(--icon);
 }

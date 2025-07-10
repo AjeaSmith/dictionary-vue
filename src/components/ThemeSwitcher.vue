@@ -53,6 +53,9 @@ onMounted(() => {
   transition: 0.4s;
   border-radius: 28px;
 }
+.slider:hover {
+  background-color: var(--accent-color);
+}
 
 /* Circle inside the slider */
 .slider::before {

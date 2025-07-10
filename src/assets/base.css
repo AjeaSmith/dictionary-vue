@@ -11,10 +11,10 @@
   --color-black-900: #050505;
   --color-black-800: #1f1f1f;
   --color-black-700: #2d2d2d;
-  /* --color-black-600: #3a3a3a; */
+  --color-black-600: #3a3a3a;
   --color-gray-400: #757575;
   --color-gray-300: #e9e9e9;
-  /* --color-gray-200: #f4f4f4; */
+  --color-gray-200: #f4f4f4;
   --color-gray-100: #ffffff;
   --color-purple: #a445ed;
   --color-red: #ff5252;
@@ -26,9 +26,10 @@
   --error: var(--color-red);
 
   /* light theme */
+  --line: var(--color-gray-300);
   --background: var(--color-gray-100);
   --text-primary: var(--color-black-700);
-  --search: #cdcdcd;
+  --search: var(--color-gray-200);
   --icon: var(--color-gray-400);
 }
 /* determines which font to use based on selection */
@@ -43,6 +44,7 @@
 }
 
 [data-theme="dark"] {
+  --line: var(--color-black-600);
   --background: var(--color-black-900);
   --text-primary: var(--color-gray-100);
   --search: var(--color-black-800);
@@ -62,7 +64,7 @@ body {
   background: var(--background);
   transition: color 0.5s, background-color 0.5s;
   line-height: 1.6;
-  font-family: var(--app-font);
+  font-family: "Inter", sans-serif;
   font-size: var(--ff-body);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
