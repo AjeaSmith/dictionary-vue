@@ -35,7 +35,7 @@ Users should be able to:
 
 ### Links
 
-[Live Site]()
+[Live Site](https://dictionary-vue-gamma.vercel.app/)
 [Source Code](https://github.com/AjeaSmith/dictionary-vue)
 
 ## My process
