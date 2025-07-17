@@ -1,10 +1,10 @@
 <script setup>
-import { useSearch } from "@/composables/useSearch";
+import { useSearchAPI } from "@/composables/useSearch";
 import IconPlay from "./icons/IconPlay.vue";
 import IconLink from "./icons/IconLink.vue";
 import { ref } from "vue";
 
-const { searchResults } = useSearch();
+const { data: results, isFetching } = useSearchAPI();
 
 const myAudioRef = ref(null);
 
@@ -44,8 +44,9 @@ function getAvaliablePhoneticText(dataObject) {
 </script>
 
 <template>
-  <section class="results">
-    <div class="results-wrap" v-for="(result, index) in searchResults" :key="index">
+  <div v-if="isFetching" style="text-align: center; margin-top: 2rem">Loading...</div>
+  <section v-else-if="results && results.length > 0" class="results">
+    <div class="results-wrap" v-for="(result, index) in results" :key="index">
       <div class="word-info">
         <div>
           <h1>{{ result.word }}</h1>
@@ -60,12 +61,12 @@ function getAvaliablePhoneticText(dataObject) {
           </audio>
         </div>
       </div>
-      <section v-for="meanings in result.meanings">
+      <section v-for="(meanings, index) in result.meanings" :key="index">
         <div class="word-noun">
           <p class="word-type">{{ meanings.partOfSpeech }}</p>
           <div class="word-meaning">
             <p>Meaning</p>
-            <ul v-for="definition in meanings.definitions">
+            <ul v-for="(definition, index) in meanings.definitions" :key="index">
               <li>{{ definition.definition }}</li>
               <span v-if="definition.example" style="color: var(--text-secondary)"
                 >"{{ definition.example }}"</span
@@ -74,13 +75,13 @@ function getAvaliablePhoneticText(dataObject) {
           </div>
           <div class="word-synonyms">
             <p>Synonyms</p>
-            <p v-for="synonym in meanings.synonyms">{{ synonym }}</p>
+            <p v-for="(synonym, index) in meanings.synonyms" :key="index">{{ synonym }}</p>
           </div>
         </div>
       </section>
       <div class="section-separator" />
       <div class="source">
-        <p v-for="source in result.sourceUrls">
+        <p v-for="(source, index) in result.sourceUrls" :key="index">
           Source <a :href="source">{{ source }}</a> <IconLink />
         </p>
       </div>

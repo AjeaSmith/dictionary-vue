@@ -1,92 +1,71 @@
+<script setup>
+import { defineProps, defineEmits } from "vue";
+
+// Define props for v-model:search and formErrorState
+const props = defineProps({
+  search: {
+    type: String,
+    default: "",
+  },
+  formErrorState: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+// Define emits for updating v-model and handling submit
+const emit = defineEmits(["update:search", "submit"]);
+
+// Function to handle input change and update the v-model binding
+function updateSearch(event) {
+  emit("update:search", event.target.value);
+}
+
+// Function to handle form submission
+function handleSubmit() {
+  emit("submit");
+}
+</script>
+
 <template>
-  <form @submit.prevent="handleFormSubmit">
-    <label for="search" class="sr-only">Search</label>
-    <div class="search-wrap" :class="{ errorField: error }">
-      <input
-        v-model="searchTerm"
-        type="text"
-        placeholder="Search for word..."
-        name="search"
-        id="search"
-        autocomplete="off"
-        :aria-invalid="!searchTerm ? true : false"
-        :aria-describedby="!searchTerm ? 'search-error' : null"
-      />
-      <IconSearch />
-    </div>
-    <span v-if="error" class="error-message" id="search-error" role="alert"
-      >Whoops, can’t be empty…</span
-    >
+  <form @submit.prevent="handleSubmit" class="search-bar">
+    <input
+      type="search"
+      placeholder="Search for a word..."
+      :value="props.search"
+      @input="updateSearch"
+      :class="{ 'input-error': props.formErrorState }"
+    />
+    <p v-if="props.formErrorState" class="error-message">Please enter a word.</p>
   </form>
 </template>
 
-<script setup>
-import { ref, watch } from "vue";
-import IconSearch from "./icons/IconSearch.vue";
-
-import { useSearch } from "@/composables/useSearch.js";
-
-const searchTerm = ref("");
-const error = ref(false);
-
-const { getSearchedWord } = useSearch();
-
-async function handleFormSubmit() {
-  if (!searchTerm.value) {
-    error.value = true;
-    return;
-  }
-  await getSearchedWord(searchTerm.value);
-}
-watch(searchTerm, async (newValue) => {
-  if (newValue) {
-    error.value = false;
-  }
-});
-</script>
-
 <style scoped>
-form {
-  margin-top: 50px;
-  margin-bottom: 1.8rem;
-}
-.search-wrap {
-  background-color: var(--search);
-  border-radius: 16px;
-  border: 1.4px solid var(--search);
-  padding: 16px;
+.search-bar {
   display: flex;
-  align-items: center;
-  transition: border-color 0.5s, background-color 0.5s ease;
+  gap: 10px;
+  margin-bottom: 20px;
 }
-
-.search-wrap:focus-within {
-  border-color: var(--accent-color);
+.search-bar input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
-
-.errorField {
+.search-bar input.input-error {
   border-color: red;
 }
-
-input {
-  color: var(--app-font);
-  font-weight: bold;
-  font-family: var(--app-font);
-  background-color: var(--search);
+.search-bar button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
   border: none;
-  outline: none;
-  flex-grow: 1;
-  padding: 0;
-  transition: color 0.5s, background-color 0.5s ease;
+  border-radius: 5px;
+  cursor: pointer;
 }
-
 .error-message {
-  font-size: var(--fs-body);
-  color: var(--error);
-  transition: color 0.5s ease;
-}
-.errorField {
-  border: 1.4px solid var(--error);
-  transition: border 0.5s ease;
+  color: red;
+  font-size: 0.9em;
+  margin-top: 5px;
 }
 </style>

@@ -1,5 +1,16 @@
+<script setup>
+import { defineProps } from "vue";
+
+const props = defineProps({
+  errorData: {
+    type: Object,
+    default: null,
+  },
+});
+</script>
+
 <template>
-  <section class="not-found" role="alert" aria-live="polite">
+  <section class="not-found" role="alert" aria-live="polite" v-if="props.errorData">
     <div>
       <h1>No Definitions Found</h1>
       <p>
@@ -9,6 +20,7 @@
     </div>
   </section>
 </template>
+
 <style scoped>
 .not-found {
   font-family: var(--app-font);
