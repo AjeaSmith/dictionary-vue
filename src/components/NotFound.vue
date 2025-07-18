@@ -1,16 +1,11 @@
 <script setup>
-import { defineProps } from "vue";
+import { useSearchAPI } from "@/composables/useSearch";
 
-const props = defineProps({
-  errorData: {
-    type: Object,
-    default: null,
-  },
-});
+const { foundWord } = useSearchAPI();
 </script>
 
 <template>
-  <section class="not-found" role="alert" aria-live="polite" v-if="props.errorData">
+  <section v-if="!foundWord" class="not-found" role="alert" aria-live="polite">
     <div>
       <h1>No Definitions Found</h1>
       <p>

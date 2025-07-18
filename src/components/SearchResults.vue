@@ -4,7 +4,7 @@ import IconPlay from "./icons/IconPlay.vue";
 import IconLink from "./icons/IconLink.vue";
 import { ref } from "vue";
 
-const { data: results, isFetching } = useSearchAPI();
+const { results } = useSearchAPI();
 
 const myAudioRef = ref(null);
 
@@ -44,8 +44,7 @@ function getAvaliablePhoneticText(dataObject) {
 </script>
 
 <template>
-  <div v-if="isFetching" style="text-align: center; margin-top: 2rem">Loading...</div>
-  <section v-else-if="results && results.length > 0" class="results">
+  <section class="results">
     <div class="results-wrap" v-for="(result, index) in results" :key="index">
       <div class="word-info">
         <div>

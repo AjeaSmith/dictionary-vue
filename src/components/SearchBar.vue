@@ -1,52 +1,47 @@
 <script setup>
-import { defineProps, defineEmits } from "vue";
+import { useSearchAPI } from "@/composables/useSearch";
+import { ref, watch } from "vue";
 
-// Define props for v-model:search and formErrorState
-const props = defineProps({
-  search: {
-    type: String,
-    default: "",
-  },
-  formErrorState: {
-    type: Boolean,
-    default: false,
-  },
+const { searchWord } = useSearchAPI();
+const search = ref("");
+const fieldError = ref(false);
+
+async function handleSubmit() {
+  if (!search.value) {
+    fieldError.value = true;
+    return;
+  }
+  await searchWord(search.value);
+}
+watch(search, (newValue) => {
+  console.log(newValue);
+  if (!newValue) {
+    fieldError.value = true;
+  }
+  fieldError.value = false;
 });
-
-// Define emits for updating v-model and handling submit
-const emit = defineEmits(["update:search", "submit"]);
-
-// Function to handle input change and update the v-model binding
-function updateSearch(event) {
-  emit("update:search", event.target.value);
-}
-
-// Function to handle form submission
-function handleSubmit() {
-  emit("submit");
-}
 </script>
 
 <template>
   <form @submit.prevent="handleSubmit" class="search-bar">
     <input
+      v-model="search"
       type="search"
       placeholder="Search for a word..."
-      :value="props.search"
-      @input="updateSearch"
-      :class="{ 'input-error': props.formErrorState }"
+      :class="{ 'input-error': fieldError }"
     />
-    <p v-if="props.formErrorState" class="error-message">Please enter a word.</p>
+    <p v-if="fieldError" class="error-message">Please enter a word.</p>
   </form>
 </template>
 
 <style scoped>
 .search-bar {
   display: flex;
-  gap: 10px;
+  flex-direction: column;
   margin-bottom: 20px;
 }
 .search-bar input {
+  margin-top: 2rem;
   flex-grow: 1;
   padding: 10px;
   border: 1px solid #ccc;
